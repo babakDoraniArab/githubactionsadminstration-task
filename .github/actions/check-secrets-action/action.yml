@@ -3,7 +3,7 @@ author: mattdavis0351
 description: validation action for this lab
 
 inputs:
-  your-secret:
+  your_secret:
     description: A Personal Access Token with the repo scope stored as a secret
     required: true
   secrets-context:
