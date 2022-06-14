@@ -1,0 +1,22 @@
+name: Grading workflow
+on:
+  repository_dispatch:
+    types: ["grading"]
+  workflow_dispatch:
+
+jobs:
+  grade-learner:
+    if: github.event_name == 'repository_dispatch'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Grading results
+        uses: githubtraining/looking-glass-action@v0.1.0
+        with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          feedback: ${{ toJSON(github.event.client_payload) }}
+  troubleshoot-activity:
+    if: github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    steps:
+      - name: troubleshooting steps
+        run: echo "If you're stuck, this documentation may be helpful; https://docs.github.com/en/actions/reference/encrypted-secrets"
